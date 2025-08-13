@@ -1,202 +1,320 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medeiros Móveis - A certeza de um ótimo negócio</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* Estilos gerais */
-        body {
-            font-family: sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medeiros Móveis - A certeza de um ótimo negócio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+/* Estilos gerais /
+:root{
+--green:#0b5a2b; / verde escuro */
+--green-2:#0f7a3b;
+--muted:#f6f6f6;
+--black:#0b0b0b;
+--max-width:1100px;
+--radius:16px;
+--glass: rgba(255,255,255,0.06);
+}
+*{box-sizing:border-box}
+body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; color:var(--black); background:linear-gradient(180deg,#fff 0%, #f8f9fa 100%)}
+a{color:inherit; text-decoration:none; transition: color 0.3s ease, transform 0.3s ease;}
+a:hover { color: var(--green-2); transform: translateY(-2px); }
+.container{max-width:var(--max-width); margin:0 auto; padding:0 20px}
+.section { padding: 48px 0; }
 
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
+    /* Cabeçalho e Navegação */
+    header{position:sticky; top:0; backdrop-filter: blur(6px); background:rgba(255,255,255,0.8); z-index:40; border-bottom:1px solid #e9ecef}
+    .topbar{display:flex; align-items:center; justify-content:space-between; height:76px}
+    .brand{display:flex; align-items:center; gap:14px}
+    .brand img{height:52px}
+    nav ul{display:flex; gap:18px; list-style:none; margin:0; padding:0}
+    nav a{padding:8px 12px; border-radius:10px; transition:all .18s}
+    nav a:hover{background:var(--glass); transform:translateY(-2px)}
+    .cta{background:var(--green); color:#fff; padding:10px 14px; border-radius:10px; box-shadow:0 6px 18px rgba(11,90,43,0.12)}
 
-        .section {
-            padding: 20px 0;
-            margin-bottom: 20px;
-        }
+    /* Hero */
+    .hero{display:grid; grid-template-columns:1fr 420px; gap:30px; align-items:center; padding:48px 0}
+    .hero .card{background:linear-gradient(180deg, rgba(11,90,43,0.07), rgba(11,90,43,0.02)); border-radius:20px; padding:36px}
+    h1{margin:0 0 10px; font-size:36px; color:var(--green-2)}
+    p.lead{margin:0 0 18px; color:#333; font-size:16px}
+    .hero .actions{display:flex; gap:12px}
 
-        h2, h3 {
-            color: #2c3e50;
-        }
+    /* Carousel */
+    .carousel-container {
+        position: relative;
+        width: 100%;
+        height: 420px;
+        overflow: hidden;
+        border-radius: 16px;
+        box-shadow: 0 18px 40px rgba(11,90,43,0.06);
+    }
 
-        /* Cabeçalho e Navegação */
-        header {
-            background: #fff;
-            color: #333;
-            padding-top: 10px;
-            min-height: 70px;
-            border-bottom: #e8491d 3px solid;
+    .carousel-slide {
+        display: flex;
+        width: 300%; /* Ajuste com o número de imagens */
+        height: 100%;
+        transition: transform 0.8s ease-in-out;
+        transform: translateX(0);
+    }
+
+    .carousel-slide img {
+        width: calc(100% / 3); /* Ajuste com o número de imagens */
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    /* angled section separators */
+    .angled{clip-path: polygon(0 6%, 100% 0, 100% 100%, 0 100%); background:linear-gradient(180deg,#ffffff, #fbfffb)}
+
+    /* cards */
+    .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px}
+    .product{background:#fff;border-radius:14px;padding:14px;box-shadow:0 6px 18px rgba(13,13,13,0.06); transition:transform .25s, box-shadow .25s}
+    .product:hover{transform:translateY(-8px); box-shadow:0 18px 36px rgba(13,13,13,0.08)}
+    .product img{width:100%; height:180px; object-fit:cover; border-radius:10px}
+    .product h4{margin:10px 0 6px}
+    .price{font-weight:700; color:var(--green)}
+
+    /* About and advantages */
+    .about-grid{display:grid; grid-template-columns:1fr 360px; gap:28px; align-items:start}
+    .advantages{background:linear-gradient(180deg,#fff,#f8fff8); padding:18px; border-radius:12px}
+    .adv-item{display:flex; gap:12px; align-items:flex-start}
+    .adv-item strong{display:block}
+
+    /* Footer */
+    footer{padding:28px 0; border-top:1px solid #e9ecef; margin-top:24px}
+    .socials{display:flex; gap:12px}
+    .socials a i { margin-right: 4px; }
+
+    /* Responsive */
+    @media (max-width:920px){
+        .hero{grid-template-columns:1fr;}
+        .about-grid{grid-template-columns:1fr}
+        .topbar{height:72px; position:relative}
+        .brand img{height:44px}
+
+        /* Mobile nav styles */
+        nav { display: none; }
+        #menu-toggle { display: block !important; }
+        nav.open {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-
-        header .logo {
-            font-size: 24px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-        }
-
-        header .logo img {
-            height: 50px;
-            margin-right: 10px;
-        }
-
-        header nav ul {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            display: flex;
-            align-items: center;
-        }
-
-        header nav li {
-            padding: 0 15px;
-        }
-
-        header nav a {
-            color: #333;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        header .whatsapp-btn {
-            background-color: #25d366;
-            color: #fff;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-left: 20px;
-        }
-
-        /* Seção de Contato */
-        #contato {
-            display: flex;
-            justify-content: space-between;
-            padding: 40px 0;
-            flex-wrap: wrap;
-        }
-
-        #contato .info {
-            width: 45%;
-        }
-
-        #contato .mapa {
-            width: 45%;
-        }
-
-        #contato iframe {
+            flex-direction: column;
+            position: absolute;
+            top: 72px;
+            left: 0;
             width: 100%;
-            height: 450px;
-            border: 0;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            padding: 10px 20px;
+            border-bottom: 1px solid #e9ecef;
         }
+        nav.open ul { flex-direction: column; gap: 4px; }
+        nav.open a { display: block; padding: 10px; }
+    }
 
-        /* Rodapé */
-        footer {
-            background: #2c3e50;
-            color: #fff;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 20px;
-        }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            header nav {
-                display: none;
-                width: 100%;
-                text-align: center;
-            }
-
-            header nav.active {
-                display: block;
-            }
-
-            header nav ul {
-                flex-direction: column;
-            }
-
-            header nav li {
-                padding: 10px 0;
-            }
-
-            header .whatsapp-btn {
-                margin: 10px 0;
-            }
-
-            .menu-toggle {
-                display: block;
-                cursor: pointer;
-            }
-
-            #contato .info,
-            #contato .mapa {
-                width: 100%;
-                margin-bottom: 20px;
-            }
-        }
-    </style>
+    /* small animations */
+    .fade-up{opacity:0; transform:translateY(12px); animation:fadeUp .7s forwards}
+    @keyframes fadeUp{to{opacity:1; transform:none}}
+</style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="assets/logo.png" alt="Medeiros Móveis Logo">
-            <span>Medeiros Móveis</span>
-        </div>
-        <nav>
+<header>
+<div class="container topbar">
+<div class="brand">
+<img src="assets/logo.jpg" alt="Medeiros Móveis" onerror="this.style.display='none'" />
+<div>
+<div style="font-weight:700;color:var(--green);">Medeiros Móveis</div>
+<small style="color:#666">A certeza de um ótimo negócio</small>
+</div>
+</div>
+
+        <nav id="nav-menu">
             <ul>
-                <li><a href="#inicio">Início</a></li>
+                <li><a href="#home">Início</a></li>
                 <li><a href="#catalogo">Catálogo</a></li>
                 <li><a href="#sobre">Sobre</a></li>
                 <li><a href="#vantagens">Vantagens</a></li>
-                <li><a href="tel:44991020846" class="whatsapp-btn">Fale no WhatsApp</a></li>
+                <li><a class="cta" href="[https://wa.me/5544991020846](https://wa.me/5544991020846)" target="_blank">Fale no WhatsApp</a></li>
             </ul>
         </nav>
-    </header>
+        <button id="menu-toggle" style="display:none;background:transparent;border:none;font-size:24px;cursor:pointer;color:var(--green-2);padding:8px 12px;">
+            <i class="fa fa-bars"></i>
+        </button>
+    </div>
+</header>
 
-    <main>
-        <section id="contato" class="section">
-            <div class="container">
-                <div class="info">
-                    <h3>Contato</h3>
-                    <p>Visite nossa loja ou fale direto com a gente pelo WhatsApp.</p>
-                    <p><strong>Endereço:</strong> Av Yolanda Loureiro de Carvalho, 426 - Centro - Ubiratã-PR</p>
-                    <p><strong>Telefone/WhatsApp:</strong> (44) 99102-0846</p>
-                    <p><strong>Redes:</strong></p>
-                    <ul>
-                        <li><a href="https://instagram.com/medeirosmov" target="_blank">@medeirosmov</a></li>
-                        <li><a href="https://facebook.com/MedeirosMoveisS" target="_blank">MedeirosMoveisS</a></li>
-                    </ul>
+<main class="container">
+    <section id="home" class="hero fade-up">
+        <div class="card">
+            <h1>Móveis planejados, sofás e colchões com preço de fábrica</h1>
+            <p class="lead">Projetos sob medida, materiais de qualidade e preços direto da fábrica. Mais de <strong>20 anos</strong> transformando sua casa em um lar.</p>
+            <div class="actions">
+                <a class="cta" href="#catalogo">Ver catálogo</a>
+                <a href="#sobre" style="padding:10px 14px;border-radius:10px;">Nossa história</a>
+            </div>
+            <div style="margin-top:18px;color:#444; font-size:14px">Atendimento: <strong>(44) 9 91020846</strong> • AV Yolanda Loureiro de carvalho, 426 - Ubirata - PR</div>
+        </div>
+
+        <div class="carousel-container">
+            <div class="carousel-slide">
+                <img src="assets/carousel/hero-1.jpg" alt="Móveis Planejados">
+                <img src="assets/carousel/hero-2.jpg" alt="Sofás Modernos">
+                <img src="assets/carousel/hero-3.jpg" alt="Colchões Confortáveis">
+            </div>
+        </div>
+    </section>
+
+    <section id="catalogo" class="section angled">
+        <div class="container">
+            <h2 style="color:var(--green);">Catálogo</h2>
+            <p class="lead">Confira nossos produtos — sofás, colchões e móveis planejados e tudo o que você precisar sobre móveis.</p>
+
+            <div id="products" class="cards" aria-live="polite">
                 </div>
-                <div class="mapa">
-                    <h3>Localização</h3>
-                    <iframe src="https://maps.google.com/?cid=12962664688840508271&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+            <div style="margin-top:16px; font-size:13px; color:#555"".</div>
+        </div>
+    </section>
+
+    <section id="sobre" class="section">
+        <div class="container about-grid">
+            <div>
+                <h3>História da Medeiros Móveis</h3>
+                <p>Há mais de <strong>20 anos</strong>, a <strong>Medeiros Móveis</strong> vem transformando casas em lares. Fundada por <strong>Alcides dos Santos Medeiros</strong>, nossa empresa nasceu com a missão de oferecer móveis de qualidade, com design diferenciado e preços justos.</p>
+                <p>Com muito trabalho e dedicação, conquistamos a confiança de clientes de toda a região. Hoje, sob a liderança de <strong>Guilherme Medeiros</strong>, seguimos inovando e oferecendo soluções personalizadas, mantendo vivo o compromisso que sempre nos guiou: entregar o melhor para cada cliente.</p>
+                <p>Somos referência em <strong>móveis planejados</strong>, além de oferecer <strong>sofás e colchões de qualidade</strong> sempre com <strong>preço de fábrica</strong>, garantindo o melhor custo-benefício sem abrir mão da durabilidade e do conforto.</p>
+            </div>
+
+            <aside class="advantages">
+                <h4>Vantagens de comprar conosco</h4>
+                <div style="margin-top:12px; display:flex; flex-direction:column; gap:12px">
+                    <div class="adv-item"><div style="width:42px;height:42px;border-radius:10px;background:var(--green);display:flex;align-items:center;justify-content:center;color:white;font-weight:700">1</div><div><strong>Preço de fábrica</strong><div style="font-size:13px;color:#444">Sem intermediários — preço mais baixo pra você.</div></div></div>
+                    <div class="adv-item"><div style="width:42px;height:42px;border-radius:10px;background:#111;display:flex;align-items:center;justify-content:center;color:white;font-weight:700">Q</div><div><strong>Qualidade garantida</strong><div style="font-size:13px;color:#444">Materiais resistentes e acabamento impecável.</div></div></div>
+                    <div class="adv-item"><div style="width:42px;height:42px;border-radius:10px;background:var(--green-2);display:flex;align-items:center;justify-content:center;color:white;font-weight:700">P</div><div><strong>Projetos sob medida</strong><div style="font-size:13px;color:#444">Aproveitamento total do seu espaço.</div></div></div>
+                    <div class="adv-item"><div style="width:42px;height:42px;border-radius:10px;background:#555;display:flex;align-items:center;justify-content:center;color:white;font-weight:700">20</div><div><strong>Mais de 20 anos de experiência</strong><div style="font-size:13px;color:#444">Tradição, confiança e atendimento humano.</div></div></div>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <section id="vantagens" class="section">
+        <div class="container">
+            <h3 style="color:var(--green);">Sofás e colchões - qualidade e preço de fábrica</h3>
+            <p class="lead">Oferecemos uma seleção especial de sofás e colchões: conforto, resistência e acabamento de primeira — sempre com preço direto da fábrica. Entre em contato para conhecer nossos modelos e condições.</p>
+
+            <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:18px">
+                <div style="flex:1; min-width:220px; background:#fff; padding:18px; border-radius:12px; box-shadow:0 10px 24px rgba(0,0,0,0.04)">
+                    <h4>Poltronas e Sofás</h4>
+                    <p style="margin:8px 0 0">Modelos diversos, estofamento premium e opções de cores e tecidos.</p>
+                </div>
+                <div style="flex:1; min-width:220px; background:#fff; padding:18px; border-radius:12px; box-shadow:0 10px 24px rgba(0,0,0,0.04)">
+                    <h4>Colchões</h4>
+                    <p style="margin:8px 0 0">Ortopédicos e de molas, com garantia de conforto e durabilidade.</p>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <footer>
-        <p>© 2024 Medeiros Móveis — Mais de 20 anos</p>
-    </footer>
+    <section id="contato" class="section angled">
+        <div class="container">
+            <h3>Contato</h3>
+            <p class="lead">Visite nossa loja ou fale direto com a gente pelo WhatsApp.</p>
+            <div style="display:flex;gap:20px;flex-wrap:wrap">
+                <div style="flex:1; min-width:260px; background:#fff; padding:16px; border-radius:12px">
+                    <strong>Endereço</strong>
+                    <div>AV Yolanda Loureiro de Carvalho, 426 - Ubirata - PR</div>
+                    <div style="margin-top:12px"><strong>Telefone/WhatsApp:</strong> (44) 991020846</div>
+                    <div style="margin-top:12px"><strong>Redes:</strong>
+                        <div class="socials" style="margin-top:8px">
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i> @medeirosmov</a>
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i> MedeirosMoveisS</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="flex:1; min-width:340px; background:#fff; padding:12px; border-radius:12px">
+                    <strong>Mapa</strong>
+                    <div style="margin-top:12px; height:200px; border-radius:8px; overflow:hidden; background:#eee;">
+                        <iframe src="[https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3644.684286924343!2d-53.05419482354994!3d-24.44884917837883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94f2f3c1f8c1a8d3%3A0x37a83a8a94aa3f4d!2sMedeiros%20M%C3%B3veis!5e0!3m2!1spt-BR!2sbr!4v1707808809974!5m2!1spt-BR!2sbr](https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3644.684286924343!2d-53.05419482354994!3d-24.44884917837883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94f2f3c1f8c1a8d3%3A0x37a83a8a94aa3f4d!2sMedeiros%20M%C3%B3veis!5e0!3m2!1spt-BR!2sbr!4v1707808809974!5m2!1spt-BR!2sbr)" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <div>© <strong>Medeiros Móveis</strong> — Mais de 20 anos</div>
+        <div class="socials">
+            <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+            <a href="[https://wa.me/5544991020846](https://wa.me/5544991020846)" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
+    </div>
+</footer>
+
+<script id="products-data" type="application/json">
+</script>
+
+<script>
+    // Carrega produtos a partir do bloco JSON acima. Para adicionar: coloque a imagem em /produtos/ e adicione um objeto no array.
+    const products = JSON.parse(document.getElementById('products-data').textContent);
+    const container = document.getElementById('products');
+
+    function renderProducts(list){
+        if(!list || list.length===0){ container.innerHTML = '<div style="padding:18px;background:#fff;border-radius:12px">Nenhum produto cadastrado ainda.</div>'; return }
+        container.innerHTML = '';
+        list.forEach(p=>{
+            const el = document.createElement('article'); el.className='product fade-up';
+            el.innerHTML = `
+                <img src="${p.img}" alt="${p.title}" onerror="this.src='assets/placeholder.png'" />
+                <h4>${p.title}</h4>
+                <div style="font-size:13px;color:#666">${p.desc}</div>
+                <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center">
+                    <div class="price">${p.price || ''}</div>
+                    <a class="cta" href="[https://wa.me/5544991020846?text=Olá!%20Tenho%20interesse%20no%20produto%20$](https://wa.me/5544991020846?text=Olá!%20Tenho%20interesse%20no%20produto%20$){encodeURIComponent(p.title)}" target="_blank">Quero</a>
+                </div>
+            `;
+            container.appendChild(el);
+        })
+    }
+
+    renderProducts(products);
+
+    // Smooth scrolling for internal links
+    document.querySelectorAll('a.nav-link').forEach(a=>{
+        a.addEventListener('click',e=>{
+            e.preventDefault(); const id=a.getAttribute('href').slice(1); const el=document.getElementById(id);
+            if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+        })
+    })
+
+    // Carousel Script
+    const carousel = document.querySelector('.carousel-slide');
+    const images = document.querySelectorAll('.carousel-slide img');
+    const imageCount = images.length;
+    let currentIndex = 0;
+
+    function slideCarousel() {
+        currentIndex++;
+        if (currentIndex >= imageCount) {
+            currentIndex = 0;
+        }
+        carousel.style.transform = `translateX(-${currentIndex * (100 / imageCount)}%)`;
+    }
+
+    setInterval(slideCarousel, 5000); // Muda de imagem a cada 5 segundos
+
+    // Mobile menu toggle
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+        const nav = document.getElementById('nav-menu');
+        nav.classList.toggle('open');
+    });
+</script>
 </body>
 </html>
